@@ -25,3 +25,76 @@ pod "sshlab" deleted
 devx@master:~/celebalARISElab/minikube$ 
 devx@master:~/celebalARISElab/minikube$ kubectl get pods 
 No resources found in default namespace.
+
+
+devx@master:~/celebalARISElab/minikube$ kubectl create deployment sshlabdeploymentpod --image rajneeshmahala/containeripkube:41
+deployment.apps/sshlabdeploymentpod created
+devx@master:~/celebalARISElab/minikube$ kubectl get dp
+error: the server doesn't have a resource type "dp"
+devx@master:~/celebalARISElab/minikube$ kubectl get deploy
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+sshlabdeploymentpod   1/1     1            1           18s
+devx@master:~/celebalARISElab/minikube$ kubectl delete pod sshlab
+Error from server (NotFound): pods "sshlab" not found
+devx@master:~/celebalARISElab/minikube$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+sshlabdeploymentpod-659fbdccb-zlxsg   1/1     Running   0          55s
+devx@master:~/celebalARISElab/minikube$ kubectl delete pod sshlabdeploymentpod-659fbdccb-zlxsg 
+pod "sshlabdeploymentpod-659fbdccb-zlxsg" deleted
+devx@master:~/celebalARISElab/minikube$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+sshlabdeploymentpod-659fbdccb-slq2c   1/1     Running   0          35s
+
+devx@master:~/celebalARISElab/minikube$ kubectl describe pods
+Name:             sshlabdeploymentpod-659fbdccb-slq2c
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Sat, 24 Feb 2024 06:25:01 +0000
+Labels:           app=sshlabdeploymentpod
+                  pod-template-hash=659fbdccb
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.6
+IPs:
+  IP:           10.244.0.6
+Controlled By:  ReplicaSet/sshlabdeploymentpod-659fbdccb
+Containers:
+  containeripkube:
+    Container ID:   docker://e38f90b3c12c398aab0c41429be854c8a482c274f570fb6520e52952459ad39f
+    Image:          rajneeshmahala/containeripkube:41
+    Image ID:       docker-pullable://rajneeshmahala/containeripkube@sha256:0ceed6ec4a0c2d8263126b84b7e9d42d5c39d747698a10b26644071f27aff69b
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 24 Feb 2024 06:25:02 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-fc246 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-fc246:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  2m57s  default-scheduler  Successfully assigned default/sshlabdeploymentpod-659fbdccb-slq2c to minikube
+  Normal  Pulled     2m57s  kubelet            Container image "rajneeshmahala/containeripkube:41" already present on machine
+  Normal  Created    2m57s  kubelet            Created container containeripkube
+  Normal  Started    2m57s  kubelet            Started container containeripkube
