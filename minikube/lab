@@ -1,0 +1,27 @@
+devx@master:~/celebalARISElab/minikube$ kubectl get pods 
+No resources found in default namespace.
+devx@master:~/celebalARISElab/minikube$ kubectl get node
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   3d23h   v1.28.3
+devx@master:~/celebalARISElab/minikube$ kubectl get nodes
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   3d23h   v1.28.3
+_______________________________________________________________
+
+docker pull rajneeshmahala/containeripkube:41
+
+
+devx@master:~/celebalARISElab/minikube$ kubectl run sshlab --image rajneeshmahala/containeripkube:41
+pod/sshlab created
+devx@master:~/celebalARISElab/minikube$ kubectl get pods 
+NAME     READY   STATUS              RESTARTS   AGE
+sshlab   0/1     ContainerCreating   0          8s
+devx@master:~/celebalARISElab/minikube$ kubectl get pods 
+NAME     READY   STATUS    RESTARTS   AGE
+sshlab   1/1     Running   0          33s
+devx@master:~/celebalARISElab/minikube$ kubectl delete pod sshlab
+pod "sshlab" deleted
+
+devx@master:~/celebalARISElab/minikube$ 
+devx@master:~/celebalARISElab/minikube$ kubectl get pods 
+No resources found in default namespace.
