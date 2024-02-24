@@ -98,3 +98,75 @@ Events:
   Normal  Pulled     2m57s  kubelet            Container image "rajneeshmahala/containeripkube:41" already present on machine
   Normal  Created    2m57s  kubelet            Created container containeripkube
   Normal  Started    2m57s  kubelet            Started container containeripkube
+
+devx@master:~/celebalARISElab/minikube$ kubectl get deployments 
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+sshlabdeploymentpod   1/1     1            1           5m56s
+devx@master:~/celebalARISElab/minikube$ kubectl get deploy
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+sshlabdeploymentpod   1/1     1            1           6m
+
+devx@master:~/celebalARISElab/minikube$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+sshlabdeploymentpod-659fbdccb-slq2c   1/1     Running   0          6m4s
+devx@master:~/celebalARISElab/minikube$ kubectl expose deployment sshlabdeploymentpod-659fbdccb-slq2c --port=80 --type=nodeport
+Error from server (NotFound): deployments.apps "sshlabdeploymentpod-659fbdccb-slq2c" not found
+devx@master:~/celebalARISElab/minikube$ kubectl expose deployment sshlabdeploymentpod  --port=80 --type=nodeport
+The Service "sshlabdeploymentpod" is invalid: spec.type: Unsupported value: "nodeport": supported values: "ClusterIP", "ExternalName", "LoadBalancer", "NodePort"
+devx@master:~/celebalARISElab/minikube$ kubectl expose deployment sshlabdeploymentpod  --port=80 --type=NodePort
+service/sshlabdeploymentpod exposed
+devx@master:~/celebalARISElab/minikube$ 
+devx@master:~/celebalARISElab/minikube$ minikube service sshlabdeploymentpod   --url
+http://192.168.49.2:31677
+devx@master:~/celebalARISElab/minikube$ su
+su          sudo        sudoedit    sudoreplay  sulogin     sum         suspend     
+devx@master:~/celebalARISElab/minikube$ su
+su          sudo        sudoedit    sudoreplay  sulogin     sum         suspend     
+devx@master:~/celebalARISElab/minikube$ su
+su          sudo        sudoedit    sudoreplay  sulogin     sum         suspend     
+devx@master:~/celebalARISElab/minikube$ sw
+swaplabel    swapoff      swapon       switch_root  
+devx@master:~/celebalARISElab/minikube$ sw
+swaplabel    swapoff      swapon       switch_root  
+devx@master:~/celebalARISElab/minikube$ sf
+sfdisk  sftp    
+devx@master:~/celebalARISElab/minikube$ sw
+swaplabel    swapoff      swapon       switch_root  
+devx@master:~/celebalARISElab/minikube$ ufw 
+--dry-run  --help     app        delete     disable    insert     logging    reload     route      status     
+--force    allow      default    deny       enable     limit      reject     reset      show       version    
+devx@master:~/celebalARISElab/minikube$ ufw 
+--dry-run  --help     app        delete     disable    insert     logging    reload     route      status     
+--force    allow      default    deny       enable     limit      reject     reset      show       version    
+devx@master:~/celebalARISElab/minikube$ ufw disable 
+ERROR: You need to be root to run this script
+devx@master:~/celebalARISElab/minikube$ sudo !!
+sudo ufw disable 
+Firewall stopped and disabled on system startup
+devx@master:~/celebalARISElab/minikube$ curl http://192.168.49.2:31677
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.3  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:03  txqueuelen 0  (Ethernet)
+        RX packets 1  bytes 90 (90.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+devx@master:~/celebalARISElab/minikube$ kubectl delete all -all 
+error: unknown shorthand flag: 'a' in -all
+See 'kubectl delete --help' for usage.
+devx@master:~/celebalARISElab/minikube$ kubectl delete all 
+error: resource(s) were provided, but no name was specified
+devx@master:~/celebalARISElab/minikube$ kubectl delete all --all
+pod "sshlabdeploymentpod-659fbdccb-slq2c" deleted
+service "kubernetes" deleted
+service "sshlabdeploymentpod" deleted
+deployment.apps "sshlabdeploymentpod" deleted
